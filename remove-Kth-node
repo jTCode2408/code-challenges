@@ -1,0 +1,58 @@
+PROBLEM:
+
+Write a function that receives as input the head node of a linked list and an integer k. Your function should remove the kth node from the end of the linked list and return the head node of the updated list.
+
+For example, if we have the following linked list: 
+(20) -> (19) -> (18) -> (17) -> (16) -> (15) -> (14) -> (13) -> (12) -> (11) -> null
+
+The head node would refer to the node (20).  Let k = 4, so our function should remove the 4th node from the end of the linked list, the node (14).
+
+After the function executes, the state of the linked list should be:
+(20) -> (19) -> (18) -> (17) -> (16) -> (15) -> (13) -> (12) -> (11) -> null
+
+If k is longer than the length of the linked list, the linked list should not be changed.
+
+Can you implement a solution that performs a single pass through the linked list and doesn't use any extra space?
+
+Note: When reading the tests, the linked list contents are enumerated in between square brackets; this does NOT mean the inputs are arrays.
+
+For example, a test input of head: [2, 4 ,6] indicates that the input is a singly-linked list
+(2) -> (4) -> (6) -> null whose head is the first element in the linked list.
+
+
+
+SOLUTION:
+
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def removeKthNodeFromEnd(head, k):
+    # Write your code here.
+	p1=head
+	p2=head
+	count=1
+	#point to k nodes ahead of first pointer, instead of directly where the removed node should be
+	while count <= k:
+		p2=p2.next
+		count +=1
+	if p2 is None:
+		#means first pointer is what I want to remove, which is head(where it starts)
+		head.value=head.next.value
+		#update head of list value to be next node
+		head.next=head.next.next
+		#update head pointer
+		return
+	
+	while p2.next is not None:
+		p2=p2.next
+		p1=p1.next
+		#move both pointers at same rate
+		#when second pointer reaches final node in LL, the first pointer will be before the node we want to remove, so we can reset next pointer of p1
+	p1.next=p1.next.next
+		#first pointer i before node we want to remove
+		
+		
+    
