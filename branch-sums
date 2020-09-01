@@ -1,1 +1,53 @@
-Sum individual pbrach
+PROBLEM:
+
+Write a function that takes a binary tree and returns a list of its branch sums, ordered from leftmost branch sum to rightmost branch sum.
+A branch sum is the sum of all values in a binary tree branch. A binary tree branch is a path of nodes in a tree that starts at the root node and ends at any leaf node. 
+Each BinaryTree node has an integer value, a left child node and a right child node. Children nodes can either be BinaryTree nodes or None/Null. 
+
+
+SAMPLE INPUT:
+
+                            1
+                           / \
+                          2   3
+                         /\   /\
+                        4  5 6  7
+                       /\  /
+                      8 9  10
+                      
+ SAMPLE OUTPUT:
+[15, 16, 18, 10, 11] 
+                          
+ 
+ 
+ 
+SOLUTION:
+
+# This is the class of the input root. Do not edit it.
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def branchSums(root):
+    # Write your code here.
+	sums=[]
+	eachBranch(root, 0, sums)
+	return sums
+	
+def eachBranch(root, sumTracker, sums):
+	
+	if root is None:
+		return root
+	
+	tracker= sumTracker + root.value
+	
+	if root.right is None and root.left is None:
+		sums.append(tracker)
+		return
+	
+	eachBranch(root.left, tracker, sums)
+	eachBranch(root.right, tracker, sums)
+
